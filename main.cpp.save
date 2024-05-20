@@ -1,0 +1,105 @@
+#include "TXLib.h"
+
+int main()
+    {
+    txCreateWindow (1540, 800);
+
+    string question;
+    HDC pic1;
+    string answer1;
+    HDC pic2;
+    string answer2;
+    HDC pic3;
+    string answer3;
+
+    int n_question = 0;
+    if(n_question == 1)
+    {
+        txTransparentBlt(txDC(),0 ,0  , 1540, 800  ,txLoadImage("картинки/припять.bmp"), 0, 0, RGB(512, 68, 68));
+        question = "Как ты попал в зону?";
+        pic1 = txLoadImage("картинки/ворота.bmp");
+        answer1 = "проник законно";
+        pic2 = txLoadImage("картинки/забор.bmp");
+        answer2 = "перелез через забор";
+        pic3 = txLoadImage("картинки/вертушка.bmp");
+        answer3 = "прилетел";
+    }
+    if(n_question == 2)
+    {
+        txTransparentBlt(txDC(),0 ,0  , 1540, 800  ,txLoadImage("картинки/припять.bmp"), 0, 0, RGB(512, 68, 68));
+        question = "Как ты попал в зону?";
+        pic1 = txLoadImage("картинки/ворота.bmp");
+        answer1 = "проник законно";
+        pic2 = txLoadImage("картинки/забор.bmp");
+        answer2 = "перелез через забор";
+        pic3 = txLoadImage("картинки/вертушка.bmp");
+        answer3 = "прилетел";
+    }
+    
+    
+    
+    
+    
+    
+    else
+    {
+        question = "Как ты попал в зону?";
+        pic2 = txLoadImage("картинки/забор.bmp");
+        answer2 = "перелез через забор";
+        pic3 = txLoadImage("картинки/вертушка.bmp");
+        answer3 = "прилетел";
+        pic1 = txLoadImage("картинки/ворота.bmp");
+        answer1 = "проник законно";
+    }
+
+    while(true)
+    {
+     txBegin();
+
+
+//ШАБЛОН
+    txTransparentBlt(txDC(),0 ,0  , 1540, 800  ,txLoadImage("картинки/припять.bmp"), 0, 0, RGB(512, 68, 68));
+    txSetColor (TX_BLACK);
+    txSetFillColor (TX_TRANSPARENT);
+    //Внешняя рамка
+    txRectangle (250, 25, 1240, 110);
+    txSelectFont("Times New Roman", 25);
+
+    txSetFillColor (TX_WHITE);
+    //Область номера вопроса
+    txRectangle(1340, 35, 1515, 90);
+    txDrawText(1340, 35, 1515, 90, "Вопрос № _");
+    //Область текста вопроса
+    txRectangle (250, 25, 1240, 110);
+    txDrawText(250, 25, 1240, 110, question.c_str());
+
+    //Область картинки первого ответа
+
+    txBitBlt(txDC(), 30, 225, 400, 400, pic1);
+    //Область картинки второго ответа
+
+    txBitBlt(txDC(), 560, 225, 400, 400, pic2);
+    //Область картинки третьего ответа
+
+    txBitBlt(txDC(), 1100, 225, 400, 400, pic3);
+
+    //Область текста первого ответа
+    txRectangle (70, 590, 400, 660);
+    txDrawText(70, 590, 400, 660, answer1.c_str());
+    //Область текста второго ответа
+    txRectangle (580, 590, 940, 660);
+    txDrawText(580, 590, 940, 660, answer2.c_str());
+    //Область текста третьего ответа
+    txRectangle (1115, 590, 1470, 660);
+    txDrawText(1115, 590, 1470, 660, answer3.c_str());
+    txEnd();
+
+    }
+    txDeleteDC(pic1);
+    txDeleteDC(pic2);
+    txDeleteDC(pic3);
+
+txTextCursor (false);
+return 0;
+    }
+
